@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { authenLogin } from "./slice";
 import { useSelector, useDispatch } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "../../../assets/css/bootstrap.min.css";
 import "../../../assets/css/slimselect.css";
 import "../../../assets/css/admin.css";
@@ -37,15 +37,6 @@ export default function AuthPage() {
 
   return (
     <>
-      {error && (
-        <div
-          className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-          role="alert"
-        >
-          {error.response.data.content}
-        </div>
-      )}
-
       <div
         className="sign section--bg bg-center bg-cover bg-no-repeat"
         data-bg="/img-admin/section/section.jpg"
@@ -90,6 +81,14 @@ export default function AuthPage() {
                   <button className="sign__btn" type="submit">
                     Sign in
                   </button>
+                  {error && (
+                    <div
+                      className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                      role="alert"
+                    >
+                      {error.response.data.content}
+                    </div>
+                  )}
                   <span className="sign__delimiter">or</span>
                   <div className="sign__social">
                     <a className="fb" href="#">
@@ -106,7 +105,8 @@ export default function AuthPage() {
                     </a>
                   </div>
                   <span className="sign__text">
-                    Don't have an account? <a href="signup.html">Sign up!</a>
+                    Don't have an account?{" "}
+                    <Link to="/register">Sign up!</Link>
                   </span>
                   <span className="sign__text">
                     <a href="forgot.html">Forgot password?</a>
