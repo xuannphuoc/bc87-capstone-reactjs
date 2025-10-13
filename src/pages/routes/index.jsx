@@ -6,7 +6,7 @@ import AboutPage from "./../HomeTemplates/AboutPage";
 import ListMoviePage from "./../HomeTemplates/ListMoviePage";
 import DetailPage from "./../HomeTemplates/DetailPage";
 import DashboardPage from "./../AdminTemplates/DashboardPage";
-import AddUserPage from "./../AdminTemplates/AddUserPage";
+import RegisterPage from "../AdminTemplates/RegisterPage";
 import { Route } from "react-router-dom";
 
 const routes = [
@@ -30,12 +30,16 @@ const routes = [
     element: AdminTemplate,
     nested: [
       { path: "dashboard", element: DashboardPage },
-      { path: "add-user", element: AddUserPage },
+      // { path: "add-user", element: AddUserPage },
     ],
   },
   {
     path: "auth",
     element: AuthPage,
+  },
+  {
+    path: "register",
+    element: RegisterPage,
   },
 ];
 
