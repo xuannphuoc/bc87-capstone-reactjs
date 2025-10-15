@@ -8,6 +8,8 @@ import DetailPage from "./../HomeTemplates/DetailPage";
 import CatalogPage from "../AdminTemplates/CatalogPage";
 import RegisterPage from "../AdminTemplates/RegisterPage";
 import { Route } from "react-router-dom";
+import AddUserPage from "../AdminTemplates/AddUserPage";
+import UserListsPage from "../AdminTemplates/UserListsPage";
 
 const routes = [
   {
@@ -25,7 +27,8 @@ const routes = [
     element: AdminTemplate,
     nested: [
       { path: "catalog", element: CatalogPage },
-      // { path: "add-user", element: AddUserPage },
+      { path: "add", element: AddUserPage },
+      {path: "user-list", element: UserListsPage}
     ],
   },
   {

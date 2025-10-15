@@ -19,12 +19,11 @@ export const authenLogin = createAsyncThunk(
       const response = await api.post(`QuanLyNguoiDung/DangNhap`, user);
       const authInfo = response.data.content;
 
-      // Check permission user
+      // Check quyền
       if (
         authInfo.maLoaiNguoiDung === "KhachHang" ||
         authInfo.maLoaiNguoiDung === "khachHang"
       ) {
-        // lock
         return rejectWithValue({
           response: {
             data: {
@@ -34,7 +33,7 @@ export const authenLogin = createAsyncThunk(
         });
       }
 
-      // local storage
+      // Lưu localStorage
       localStorage.setItem("ADMIN_INFO", JSON.stringify(authInfo));
 
       return authInfo;
@@ -44,25 +43,70 @@ export const authenLogin = createAsyncThunk(
   }
 );
 
+// Lấy thông tin người dùng
+export const fetchUserInfo = createAsyncThunk(
+  "auth/fetchUserInfo",
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("ADMIN_INFO"))?.accessToken;
+      if (!token) return rejectWithValue("Token không tồn tại!");
+
+      const res = await axios.post(
+        "https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/LayThongTinNguoiDung",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            TokenCybersoft:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5DaGluaCI6IlByb2plY3QgTW92aWUgTmV3IiwiSG9hVFRlbmMiOiIyNS8wOC8yMDI1IDIzOjU5OjM0IiwiSGV0SGFuZ1RhbSI6Ilh1YW4gUGjGsOG7nWMiLCJpYXQiOjE3MjM1NTM1NzR9.X9JZBa5f0GvSV-uhOMZ7H-txy0zNg9_l4e-0P3oXuiY",
+          },
+        }
+      );
+
+      return res.data.content;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.content || "Lỗi khi lấy thông tin người dùng"
+      );
+    }
+  }
+);
+
 const authReducer = createSlice({
   name: "authReducer",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(authenLogin.pending, (state) => {
-      state.loading = true;
-    });
-
-    builder.addCase(authenLogin.fulfilled, (state, action) => {
-      state.loading = false;
+  reducers: {
+    loginSuccess: (state, action) => {
       state.data = action.payload;
-    });
-
-    builder.addCase(authenLogin.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
+      localStorage.setItem("ADMIN_INFO", JSON.stringify(action.payload));
+    },
+    logout: (state) => {
+      state.data = null;
+      localStorage.removeItem("ADMIN_INFO");
+    },
+    updateProfile: (state, action) => {
+      state.data = { ...state.data, ...action.payload };
+      localStorage.setItem("ADMIN_INFO", JSON.stringify(state.data));
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(authenLogin.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(authenLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(authenLogin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchUserInfo.fulfilled, (state, action) => {
+        state.data = action.payload;
+      });
   },
 });
 
+export const { loginSuccess, logout, updateProfile } = authReducer.actions;
 export default authReducer.reducer;

@@ -61,7 +61,7 @@ export default function CatalogPage() {
             <input
               type="text"
               className="form-control"
-              placeholder="Tìm kiếm theo tên hoặc mã phim..."
+              placeholder="Tìm kiếm theo tên hoặc mã phim"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />

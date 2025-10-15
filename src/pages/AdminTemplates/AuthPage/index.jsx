@@ -19,7 +19,7 @@ export default function AuthPage() {
 
   if (data) {
     // Redict to dashboard
-    return <Navigate to={"/admin/dashboard"} />;
+    return <Navigate to={"/admin/catalog"} />;
   }
 
   const handleOnChange = (e) => {
