@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "./../../AuthPage/slice";
 import { useState } from "react";
+import "./../../../../assets/userbar.css"
 
 export default function Userbar() {
   const dispatch = useDispatch();
