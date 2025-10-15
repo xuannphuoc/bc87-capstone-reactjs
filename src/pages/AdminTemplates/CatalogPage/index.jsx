@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies, addMovie, updateMovie, deleteMovie } from "./slice";
 import MovieFormModal from "./modal";
+import { useNavigate } from "react-router-dom";
 
 export default function CatalogPage() {
   const dispatch = useDispatch();
@@ -13,6 +14,11 @@ export default function CatalogPage() {
   const [search, setSearch] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [editing, setEditing] = useState(null);
+  const navigate = useNavigate();
+
+  const handleCreateShowtime = (maPhim) => {
+    navigate(`/admin/showtime/${maPhim}`);
+  };
 
   useEffect(() => {
     dispatch(fetchMovies());
@@ -120,7 +126,6 @@ export default function CatalogPage() {
                         onClick={() => openEdit(movie)}
                       >
                         <i className="bi bi-pencil-square" />{" "}
-                        {/* bootstrap icon if available */}
                       </button>
                       <button
                         className="btn btn-sm btn-outline-danger me-2"
@@ -128,14 +133,14 @@ export default function CatalogPage() {
                       >
                         <i className="bi bi-trash" />
                       </button>
-                      <a
-                        href={movie.trailer}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn btn-sm btn-outline-success"
+                      <button
+                        className="btn btn-sm btn-outline-success me-2"
+                        variant="outline-success"
+                        title="Tạo lịch chiếu"
+                        onClick={() => handleCreateShowtime(movie.maPhim)}
                       >
-                        <i className="bi bi-play-btn" />
-                      </a>
+                        <i className="bi bi-calendar"></i>
+                      </button>
                     </td>
                   </tr>
                 ))
