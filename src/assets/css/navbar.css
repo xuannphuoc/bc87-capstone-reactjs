@@ -1,0 +1,23 @@
+.sidebar__submenu {
+  background: #1b1b2f;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__submenu-item {
+  color: #aaa;
+  text-decoration: none;
+  padding: 6px 0;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+
+.sidebar__submenu-item:hover {
+  color: #fff;
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
