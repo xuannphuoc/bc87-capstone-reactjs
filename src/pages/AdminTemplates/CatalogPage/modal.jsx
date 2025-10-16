@@ -75,13 +75,25 @@ export default function MovieFormModal({
 
     const payload = new FormData();
 
+    const convertDate = (date) => {
+      if (!date) return "";
+      const d = new Date(date);
+      const day = d.getDate().toString().padStart(2, "0");
+      const month = (d.getMonth() + 1).toString().padStart(2, "0");
+      const year = d.getFullYear();
+      return `${day}/${month}/${year}`;
+    };
+
     if (form.maPhim) payload.append("maPhim", form.maPhim);
     payload.append("tenPhim", form.tenPhim);
     payload.append("biDanh", form.biDanh);
     payload.append("trailer", form.trailer);
     payload.append("moTa", form.moTa);
     payload.append("maNhom", form.maNhom);
-    if (form.ngayKhoiChieu) payload.append("ngayKhoiChieu", form.ngayKhoiChieu);
+
+    if (form.ngayKhoiChieu)
+      payload.append("ngayKhoiChieu", convertDate(form.ngayKhoiChieu));
+
     payload.append("sapChieu", form.sapChieu);
     payload.append("dangChieu", form.dangChieu);
     payload.append("hot", form.hot);
