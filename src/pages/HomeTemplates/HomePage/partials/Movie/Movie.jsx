@@ -5,12 +5,11 @@ export default function MovieProps(props) {
         <div className="col-sm-6 col-lg-4">
             <div className="movie-grid">
                 <div className="movie-thumb c-thumb">
-                    <Link to={`/detail/${data.maPhim}`}
-
-                    />
+                    <Link to={`/detail/${data.maPhim}`}>
                     <a href="movie-details.html">
                         <img src={data.hinhAnh} alt={data.tenPhim}/>
                     </a>
+                    </Link>
                 </div>
                 <div className="movie-content bg-one">
                     <h5 className="title m-0">
