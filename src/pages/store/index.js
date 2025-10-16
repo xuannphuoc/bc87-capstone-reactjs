@@ -6,6 +6,7 @@ import userReducer from "./../AdminTemplates/AddUserPage/slice";
 import userListReducer from "./../AdminTemplates/UserListsPage/slice";
 import listMovieReducer from "./../HomeTemplates/HomePage/partials/Movie/slice.js";
 import detailMovieReducer from "./../HomeTemplates/DetailPage/slice";
+import showTimeReducer from "./../AdminTemplates/ShowtimePage/slice";
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +15,9 @@ export const store = configureStore({
     movieReducer,
     listMovieReducer,
     detailMovieReducer,
+    movie: movieReducer,
     userReducer,
     userList: userListReducer,
+    showtime: showTimeReducer,
   },
 });

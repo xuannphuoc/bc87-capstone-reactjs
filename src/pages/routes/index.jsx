@@ -10,6 +10,7 @@ import RegisterPage from "../AdminTemplates/RegisterPage";
 import { Route } from "react-router-dom";
 import AddUserPage from "../AdminTemplates/AddUserPage";
 import UserListsPage from "../AdminTemplates/UserListsPage";
+import ShowtimePage from "../AdminTemplates/ShowtimePage";
 
 const routes = [
   {
@@ -28,7 +29,8 @@ const routes = [
     nested: [
       { path: "catalog", element: CatalogPage },
       { path: "add", element: AddUserPage },
-      {path: "user-list", element: UserListsPage}
+      { path: "user-list", element: UserListsPage },
+      { path: "showtime/:maPhim", element: ShowtimePage },
     ],
   },
   {
