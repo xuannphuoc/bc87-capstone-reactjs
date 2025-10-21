@@ -1,7 +1,7 @@
 import Header from "./partials/Header/index.jsx";
 import Loader from "./partials/Loader/index.jsx";
 import {Outlet} from "react-router-dom";
-import Movie from "./HomePage/partials/Movie/index.jsx";
+import Movie from "./ListMoviePage/index.jsx";
 import Footer from "./partials/Footer/index.jsx";
 
 export default function HomeTemplates() {
@@ -10,7 +10,6 @@ export default function HomeTemplates() {
           <Loader/>
           <Header/>
           <Outlet/>
-          <Movie/>
           <Footer/>
       </div>
   );

@@ -12,7 +12,7 @@ export const fetchDetailMovie = createAsyncThunk(
     "fetchDetailMovie",
     async (id, {rejectWithValue}) => {
         try {
-            const response = await api.get(`QuanLyPhim/LayPhimTheoId?maPhim=${id}`);
+            const response = await api.get(`QuanLyPhim/LayThongTinPhim?MaPhim=${id}`);
             return response.data.content;
         }
         catch (error) {
