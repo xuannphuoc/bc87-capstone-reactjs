@@ -4,7 +4,7 @@ import registerReducer from "./../AdminTemplates/RegisterPage/slice";
 import movieReducer from "./../AdminTemplates/CatalogPage/slice";
 import userReducer from "./../AdminTemplates/AddUserPage/slice";
 import userListReducer from "./../AdminTemplates/UserListsPage/slice";
-import listMovieReducer from "./../HomeTemplates/HomePage/partials/Movie/slice.js";
+import listMovieReducer from "./../HomeTemplates/ListMoviePage/slice.js";
 import detailMovieReducer from "./../HomeTemplates/DetailPage/slice";
 import showTimeReducer from "./../AdminTemplates/ShowtimePage/slice";
 

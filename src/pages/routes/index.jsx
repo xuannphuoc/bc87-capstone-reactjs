@@ -20,7 +20,7 @@ const routes = [
       { path: "", element: HomePage },
       { path: "about", element: AboutPage },
       { path: "list-movie", element: ListMoviePage },
-      { path: "detail/:id", element: DetailPage, hiddenNav: false },
+      { path: "detail/:id", element: DetailPage, hiddenNav: true },
     ],
   },
   {
